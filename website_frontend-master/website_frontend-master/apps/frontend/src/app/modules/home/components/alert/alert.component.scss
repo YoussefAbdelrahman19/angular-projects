@@ -1,0 +1,31 @@
+a {
+  display: flex;
+  border-radius: 8px;
+  margin-top: 30px;
+  padding: 30px;
+  text-decoration: none;
+  color: #000;
+  align-items: center;
+  line-height: 1.5;
+
+  &.high {
+    background-color: hsl(0deg 100% 80%);
+  }
+
+  &.medium {
+    background-color: hsl(54deg 100% 80%);
+  }
+
+  &.low {
+    background-color: hsl(201deg 100% 80%);
+  }
+
+  &:last-child {
+    margin-bottom: 30px;
+  }
+
+  fa-icon {
+    font-size: 32px;
+    margin-right: 20px;
+  }
+}

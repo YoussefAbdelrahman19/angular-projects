@@ -1,0 +1,124 @@
+{
+  "seller": [
+    {
+      "name": "user 1",
+      "email": "user@example.com",
+      "password": "12345",
+      "id": 1
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 2
+    },
+    {
+      "name": "user 1",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 4
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 5
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 6
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 7
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 8
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 9
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 10
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 11
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 12
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 13
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 14
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 15
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 16
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 17
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 18
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 19
+    },
+    {
+      "name": "",
+      "email": "test1@gmail.com",
+      "password": "123",
+      "id": 20
+    }
+  ]
+}

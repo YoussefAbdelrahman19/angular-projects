@@ -1,0 +1,7 @@
+<span
+  [routerLink]="['/search', 'label', label.id]"
+  (click)="$event.stopPropagation()"
+  [ngStyle]="{ background: label.color }"
+  [ngClass]="{ dark: isDark }"
+  >{{ label.name }}</span
+>

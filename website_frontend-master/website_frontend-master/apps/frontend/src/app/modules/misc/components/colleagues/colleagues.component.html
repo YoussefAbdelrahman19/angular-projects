@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="content-container">
+    <div class="content">
+      <section
+        class="card"
+        *ngFor="let categoryId of [0, 1, 2, 3, 4]"
+        [id]="'category-' + categoryId"
+        inViewport
+        [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
+        (inViewportAction)="$event.visible ? setVisible(categoryId, true) : setVisible(categoryId, false)"
+      >
+        <h2 class="card-title">{{ categories[categoryId] }}</h2>
+        <div *ngFor="let colleague of (colleagues | async)?.[categoryId]" class="item">
+          <img *ngIf="colleague.image" [alt]="colleague.name" [src]="colleague.image" />
+          <div class="right-side">
+            <span class="name">{{ colleague.name }}</span>
+            <span class="subject">{{ colleague.subjects }}</span>
+            <span class="title">{{ colleague.roles }}</span>
+            <span class="job">{{ colleague.jobs }}</span>
+            <ul class="description">
+              <li *ngFor="let award of (colleague.awards ? colleague.awards : '').split('\n')">{{ award }}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <aside class="sidebar-container">
+    <div class="sidebar">
+      <a [routerLink]="'/misc/colleagues'" fragment="category-0"><span [ngClass]="{ active: (visible | async) === 0 }">Vezetőség</span></a>
+      <a [routerLink]="'/misc/colleagues'" fragment="category-1"><span [ngClass]="{ active: (visible | async) === 1 }">Tanárok</span></a>
+      <a [routerLink]="'/misc/colleagues'" fragment="category-2"><span [ngClass]="{ active: (visible | async) === 2 }">Óraadók</span></a>
+      <a [routerLink]="'/misc/colleagues'" fragment="category-3">
+        <span [ngClass]="{ active: (visible | async) === 3 }">Nevelő, oktató munkát közvetlenül segítők</span>
+      </a>
+      <a [routerLink]="'/misc/colleagues'" fragment="category-4"
+        ><span [ngClass]="{ active: (visible | async) === 4 }">Karbantartók, portások, takarítók</span></a
+      >
+    </div>
+  </aside>
+</div>

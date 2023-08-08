@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLinkActive="text-primary" routerLink="/home">Ecommerce</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
+        <li class="nav-item">
+          <div class="d-flex">
+            <form class="d-flex" role="search" *ngIf="routePath==='default'">
+              <input size="60" class="form-control me-2" type="search" placeholder="Search For product"
+                aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </li>
+      </ul>
+      <div [ngSwitch]="routePath">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngSwitchCase="'default'">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary" routerLink="">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary" routerLink="seller/auth">Seller</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary">Cart <i class="bi bi-cart-fill"></i></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngSwitchCase="'seller'">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary" routerLink="seller/home">Product List</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary" routerLink="seller/add-product">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-primary" (click)="logout()">Logout</a>
+          </li>
+          <li class="nav-item" *ngIf="userData">
+            <a class="nav-link" routerLinkActive="text-primary">Hello {{userData?.name.first|titlecase}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

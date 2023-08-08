@@ -1,0 +1,14 @@
+<div class="card" style="width:18rem;">
+  <img
+    [src]="product?.imgURL"
+    class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">product Price :{{product?.price}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted ">{{product?.name}}</h6>
+    <p class="card-text">Product Quantity{{product?.quantity}}</p>
+    <button class="btn btn-outline-primary " (click)="previousPrd()">Previous</button>
+    <button class="btn btn-outline-secondary m-2 " (click)="goBack()">Go Back</button>
+    <button class="btn btn-outline-danger " (click)="nextPrd()">Next</button>
+
+  </div>
+</div>

@@ -1,0 +1,55 @@
+:host {
+  max-width: min(1200px, calc(100vw - 40px));
+  padding: 0 20px;
+  margin: {
+    top: 30px;
+    right: auto;
+    left: auto;
+  }
+  display: flex;
+
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
+}
+
+.sidebar {
+  width: 250px;
+  margin-right: 20px;
+
+  @media screen and (max-width: 992px) {
+    width: auto;
+    margin: {
+      right: 0;
+      bottom: 20px;
+    }
+  }
+}
+
+.content {
+  width: calc(100% - 270px);
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+}
+
+h1 {
+  font-size: 3.6rem;
+  font-weight: 400;
+  max-width: 650px;
+  margin: 20px auto 30px;
+  text-align: center;
+}
+
+.loader::ng-deep {
+  .loader {
+    width: 60px;
+    height: auto;
+    margin: 0 auto;
+
+    .loader-inner div {
+      background-color: #dedede;
+    }
+  }
+}

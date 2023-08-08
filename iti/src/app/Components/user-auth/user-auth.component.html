@@ -1,0 +1,31 @@
+<!-- <p>user-auth works!</p>
+<button type="button" [disabled]="isUserLoggedIn" class="btn btn-primary" (click)="login()">Login</button>
+<button type="button" [disabled]="!isUserLoggedIn" class="btn btn-danger" (click)="logout()">Logout</button>
+
+ -->
+<div class="mt-5"></div>
+<h1 class="text-center text-primary">Login Form</h1>
+<div class="container">
+  <div class="alert alert-danger">{{myForm}}</div>
+  <div class="row">
+    <div class="col-8">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="my-2">
+          <label>Name:</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="my-2">
+          <label>Email:</label>
+          <input type="text" class="form-control" formControlName="email">
+        </div>
+        <div class="my-2">
+          <label>Password:</label>
+          <input type="text" class="form-control" formControlName="password">
+        </div>
+        <div class="my-2">
+          <button class="btn btn-lg btn-outline-info" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

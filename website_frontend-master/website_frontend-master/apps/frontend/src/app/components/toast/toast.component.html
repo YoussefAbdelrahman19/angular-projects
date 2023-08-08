@@ -1,0 +1,8 @@
+<div @toast *ngIf="toast$ | async as toast" class="toast">
+  {{ toast.message }}
+  <div class="actions">
+    <button *ngFor="let action of toast.actions" (click)="action.callback()">
+      {{ action.title }}
+    </button>
+  </div>
+</div>

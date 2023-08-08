@@ -1,0 +1,45 @@
+<label for="" class="form-label custom-label">Id:</label>
+<input type="text" class="form-control custom-input" [(ngModel)]="newStudent.id" />
+<br />
+
+<label for="" class="form-label custom-label">Name:</label>
+<input type="text" [(ngModel)]="newStudent.name" class="form-control custom-input" />
+<br />
+
+<label for="" class="form-label custom-label">Age:</label>
+<input type="text" [(ngModel)]="newStudent.age" class="form-control custom-input" />
+<br />
+
+<button class="btn btn-primary custom-button" (click)="addStudent()">Save</button>
+
+<div class="table-responsive">
+  <table class="table table-primary custom-table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td scope="row">{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>
+          <button class="btn btn-primary custom-button" (click)="showDetails(student.id)">
+            Info
+          </button>
+          <button class="btn btn-danger custom-button" (click)="deleteStudent(student.id)">
+            Delete
+          </button>
+          <button class="btn btn-secondary custom-button" (click)="updateStudent(student.id)">
+            Update
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-student-details [stdStudent]="selectedStudent"></app-student-details>
+</div>

@@ -1,0 +1,23 @@
+<h1>Create Your Order</h1>
+<select
+  name="cat"
+  class="form-control"
+  id="prdCat"
+  #catList
+  (change)="onSelectChange()"
+  [(ngModel)]="selectedCategoryId"
+>
+<option value="0">
+All
+</option>
+  <option *ngFor="let cat of categoryList" [value]="cat.id">
+    {{ cat.name }}
+  </option>
+</select>
+
+<app-product-list [recivedCategoryId]="selectedCategoryId" (onTotalPriceChanged)="changeTotalPrice($event)"></app-product-list>
+<hr>
+<div>order total price is :{{orderTotalPrice}}</div>
+<hr>
+<p>Enter Your Name:</p>
+<input type="text" class="form-control my-3" #nameInputValue name="" id="">

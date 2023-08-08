@@ -1,0 +1,26 @@
+<aside class="container">
+  <div class="dropdown-header" tabindex="0" (keyup)="keyup($event)" (click)="dropdownOpen = !dropdownOpen">
+    <fa-icon [icon]="['fas', 'bars']" class="dropdown-icon"></fa-icon>
+  </div>
+  <div class="dropdown-content" [class]="{ closed: !dropdownOpen }">
+    <ng-container *ngFor="let item of data">
+      <div *ngIf="item.children.length" class="section">
+        <span class="section-title">{{ item.name }}</span>
+        <ng-container *ngFor="let children of item.children">
+          <a *ngIf="children.type === 'page_link'" class="menu-item section-item" [routerLink]="['/information', children.slug]">{{
+            children.name
+          }}</a>
+          <a *ngIf="children.type === 'internal_link'" class="menu-item section-item" [routerLink]="children.link"
+            >{{ children.name }} -></a
+          >
+          <a *ngIf="children.type === 'external_link'" class="menu-item section-item" [href]="children.link">{{ children.name }} -></a>
+        </ng-container>
+      </div>
+      <ng-container *ngIf="!item.children.length">
+        <a *ngIf="item.type === 'page_link'" class="menu-item section-item" (click)="loadPage(item.slug)">{{ item.name }}</a>
+        <a *ngIf="item.type === 'internal_link'" class="menu-item section-item" [routerLink]="item.link">{{ item.name }} -></a>
+        <a *ngIf="item.type === 'external_link'" class="menu-item section-item" [href]="item.link">{{ item.name }} -></a>
+      </ng-container>
+    </ng-container>
+  </div>
+</aside>

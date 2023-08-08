@@ -1,0 +1,97 @@
+<div>
+  <div class="container-fluid m-2">
+    <p><i class="fas fa-heart fa-lg text-danger"></i></p>
+    <div class="row">
+      <div class="">
+        <div class="table-responsive">
+          <table class="table table-striped table-primary">
+            <thead class="table-light">
+              <tr>
+                <th>Name</th>
+                <th>brand</th>
+                <th>description</th>
+                <th>price</th>
+                <th>stock</th>
+                <th>discount</th>
+                <th>thumbnail</th>
+                <th>images</th>
+                <th>reviews</th>
+                <th>details</th>
+                <th>priceAfterDiscount</th>
+                <th>avgRating</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr class="table-primary" *ngFor="let product of products">
+                <td>{{ product.Name }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.discount.percentage }}</td>
+                <td>{{ product.thumbnail }}</td>
+                <td>{{ product.images }}</td>
+                <td>{{ product.reviews }}</td>
+                <td>{{ product.details }}</td>
+                <td>
+                  {{
+                  product.priceAfterDiscount === "NaN"
+                  ? "Not set yet"
+                  : product.priceAfterDiscount
+                  }}
+                </td>
+                <td>{{ product.avgRating }}</td>
+                <td>
+                  <i (click)="deleteproduct(product.id)" class="mx-1 btn btn-outline-danger fa-solid fa-trash d-inline"></i>
+                  <a class=" d-inline" (click)="editProduct(product.id)">
+                    <i class=" btn btn-outline-primary fa-regular fa-pen-to-square d-inline"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot></tfoot>
+          </table>
+          <p><i class="fas fa-heart fa-lg text-danger"></i></p>
+          <p><i class="fas fa-heart fa-lg text-danger"></i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h1>Product Component</h1>
+
+  <!-- Search Form -->
+  <form [formGroup]="searchForm" (ngSubmit)="searchProducts()">
+    <input type="text" formControlName="target" placeholder="Search Products" />
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Price Range Form -->
+  <form [formGroup]="priceRangeForm" (ngSubmit)="getPriceRangeProducts()">
+    <input type="number" formControlName="minPrice" placeholder="Min Price" />
+    <input type="number" formControlName="maxPrice" placeholder="Max Price" />
+    <button type="submit">Filter by Price Range</button>
+  </form>
+
+  <!-- Filter Form -->
+  <form [formGroup]="filterForm" (ngSubmit)="filterProducts()">
+    <input type="text" formControlName="category" placeholder="Filter by Category" />
+    <input type="text" formControlName="target" placeholder="Filter by Keyword" />
+    <input type="number" formControlName="minPrice" placeholder="Min Price" />
+    <input type="number" formControlName="maxPrice" placeholder="Max Price" />
+    <button type="submit">Apply Filter</button>
+  </form>
+
+  <!-- Product List -->
+  <ul>
+    <li *ngFor="let product of products">
+      <h2>{{ product.title }}</h2>
+      <p>Category: {{ product.category }}</p>
+      <p>Price: {{ product.price }}</p>
+      <!-- Add more product details as needed -->
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,296 @@
+{
+  "$schema": "node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": true
+  },
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "calendar": {
+      "root": "libs/calendar",
+      "sourceRoot": "libs/calendar/src",
+      "projectType": "library",
+      "prefix": "verseghy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/calendar/**/*.ts", "libs/calendar/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/calendar/src/test.ts",
+            "tsConfig": "libs/calendar/tsconfig.spec.json",
+            "karmaConfig": "libs/calendar/karma.conf.js"
+          },
+          "outputs": ["coverage/libs/calendar"]
+        }
+      },
+      "tags": []
+    },
+    "frontend": {
+      "root": "apps/frontend/",
+      "sourceRoot": "apps/frontend/src",
+      "projectType": "application",
+      "prefix": "verseghy",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "apps/frontend/dist",
+            "index": "apps/frontend/src/index.html",
+            "main": "apps/frontend/src/main.ts",
+            "polyfills": "apps/frontend/src/polyfills.ts",
+            "tsConfig": "apps/frontend/tsconfig.app.json",
+            "assets": [
+              "apps/frontend/src/favicon.ico",
+              "apps/frontend/src/assets",
+              "apps/frontend/src/.htaccess",
+              "apps/frontend/src/manifest.webmanifest"
+            ],
+            "styles": ["apps/frontend/src/styles.scss"],
+            "scripts": [],
+            "aot": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend/src/environments/environment.ts",
+                  "with": "apps/frontend/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend/src/environments/environment.ts",
+                  "with": "apps/frontend/src/environments/environment.hmr.ts"
+                }
+              ]
+            },
+            "dev": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "frontend:build:hmr"
+            },
+            "dev": {
+              "browserTarget": "frontend:build:dev"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "frontend:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["apps/frontend//**/*.ts", "apps/frontend//**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/frontend/src/test.ts",
+            "tsConfig": "apps/frontend/tsconfig.spec.json",
+            "karmaConfig": "apps/frontend/karma.conf.js",
+            "polyfills": "apps/frontend/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": ["apps/frontend/src/manifest.webmanifest"]
+          },
+          "outputs": ["coverage/apps/frontend/"]
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/frontend/server",
+            "main": "apps/frontend/server.ts",
+            "tsConfig": "apps/frontend/tsconfig.server.json",
+            "externalDependencies": ["@firebase/firestore", "canvas"]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend/src/environments/environment.ts",
+                  "with": "apps/frontend/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            },
+            "dev": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "frontend:build",
+            "serverTarget": "frontend:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend:build:production",
+              "serverTarget": "frontend:server:production"
+            },
+            "dev": {
+              "browserTarget": "frontend:build:dev",
+              "serverTarget": "frontend:server:dev"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "frontend:build:production",
+            "serverTarget": "frontend:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {}
+          }
+        }
+      },
+      "tags": []
+    },
+    "frontend-e2e": {
+      "root": "apps/frontend-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/frontend-e2e/protractor.conf.js",
+            "devServerTarget": "frontend:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["apps/frontend-e2e/**/*.ts", "apps/frontend-e2e/**/*.html"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["frontend"]
+    },
+    "simple-slideshow": {
+      "projectType": "library",
+      "root": "libs/simple-slideshow",
+      "sourceRoot": "libs/simple-slideshow/src",
+      "prefix": "verseghy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/simple-slideshow/**/*.ts", "libs/simple-slideshow/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/simple-slideshow/src/test.ts",
+            "tsConfig": "libs/simple-slideshow/tsconfig.spec.json",
+            "karmaConfig": "libs/simple-slideshow/karma.conf.js"
+          },
+          "outputs": ["coverage/libs/simple-slideshow"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": []
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "prefix": "verseghy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/**/*.ts", "libs/ui/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/ui/src/test.ts",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "karmaConfig": "libs/ui/karma.conf.js"
+          },
+          "outputs": ["coverage/libs/ui"]
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "tags": []
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="content">
+    <verseghy-calendar
+      (monthChanged)="onMonthChange($event)"
+      [events]="calendarEvents | async"
+      class="calendar"
+      [settings]="calendarSettings"
+    ></verseghy-calendar>
+  </div>
+</div>

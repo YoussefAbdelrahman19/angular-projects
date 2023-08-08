@@ -1,0 +1,60 @@
+
+<form [formGroup]="EmployeeForm">
+    <div class="form-group">
+        <div class="ui-inputgroup my-4 mx-auto">
+            <span class="p-float-label">
+                <input id="employeeName" type="text" pInputText  name="empName" formControlName="empName" class="form-control input-lg"> 
+                <label for="employeeName">Name</label>
+            </span> 
+            <span *ngIf="f.empName?.errors  && submitted " class="has-error">
+                <label *ngIf="f.empName?.errors.required" class="control-label text-danger">Name Field is Required</label>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="ui-inputgroup my-4 mx-auto">
+            <span class="p-float-label">
+                <input id="employeeEmail" type="text" pInputText  name="empEmail" formControlName="empEmail" class="form-control input-lg">
+                <label for="employeeEmail">Email</label>
+            </span> 
+            <span *ngIf="f.empEmail?.errors  && submitted " class="has-error">
+                <label *ngIf="f.empEmail?.errors.email || f.empEmail?.errors.pattern" class="control-label text-danger"> Email not valid</label>
+                <label *ngIf="f.empEmail?.errors.required" class="control-label text-danger">Email is Required</label>
+
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="ui-inputgroup my-4">
+            <span class="p-float-label">
+                <input pInputText id="employeemobile" name="empPhone" formControlName="empPhone" class="form-control input-lg">
+                <label for="employeemobile">Phone</label>
+            </span> 
+            <span *ngIf="f.empPhone?.errors  && submitted " class="has-error">
+                <span *ngIf="f.empPhone?.errors  && submitted " class="has-error">
+                    <label *ngIf="f.empPhone?.errors.required" class="control-label text-danger">Phone is Required</label>
+                    <label *ngIf="f.empPhone?.errors.pattern" class="control-label text-danger"> Mobile number not valid</label>
+                </span>    
+            </span>
+            <span *ngIf="f.errors" class="has-error">
+                <label *ngIf="f.errors?.empPhone" class="control-label text-danger">{{f.errors?.mobile[0]}}</label>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">     
+        <div class="ui-inputgroup mb-4">
+            <span class="p-float-label">
+                <textarea inputId="employeeAddress" rows="3" cols="30" formControlName="empAddress" [style]="{'width':'100%'}" pInputTextarea ></textarea>
+                <label for="employeeAddress">Address</label>
+            </span>
+            <span *ngIf="f.empAddress?.errors  && submitted " class="has-error">
+                <label *ngIf="f.empAddress.errors?.required" class="control-label text-danger">Address is Required</label>
+            </span>
+        </div>
+   </div>
+   
+    <div class="text-center mt-4">
+        <p-button  pRipple styleClass="p-button-success" (click)="editEmployee();" [disabled]="EmployeeForm.invalid">Update </p-button>
+      </div> 
+</form>
+<p-toast></p-toast>

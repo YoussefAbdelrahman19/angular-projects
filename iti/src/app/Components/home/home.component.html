@@ -1,0 +1,13 @@
+<p>home works!</p>
+<p>{{storeDate.name}}</p>
+<div class="card text-start">
+  <img class="card-img-top " [src]="storeDate.imgUrl" alt="Title" width="100" height="200" *ngIf="isImageDisplayed">
+  <div class="card-body">
+    <h4 class="card-title">{{storeDate.name}}</h4>
+    <button class="" (click)="toggleImage()">Toggle Image</button>
+    <p class="card-text">Our branches</p>
+    <ul>
+      <li *ngFor="let item of storeDate.branches">{{item}}</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<!-- <h1 *ngIf="isContainedBsClass; else elseBlock4">Ng if test</h1>
+
+<ng-template #elseBlock4>Else block4</ng-template> -->
+<!-- ng switch  -->
+<!-- <div LightBox="yellow" >for test custom directive with value</div>
+<div>price in euro {{price |convertCurrency:40 | currency:'EUR':'symbol'}}</div>
+<div>price in dollar {{price |convertCurrency:33 | currency:'EUR':'symbol'}}</div>
+<div>price in egp {{price | convertCurrency:1 |currency:'EGP':'symbol'}}</div>
+<div>today date is  {{todayDate | date:"long"}}</div>
+
+<div [ngSwitch]="selectedCategoryId">
+  <div *ngSwitchCase="1">{{ selectedCategoryId }}</div>
+  <div *ngSwitchCase="2">{{ selectedCategoryId }}</div>
+  <div *ngSwitchCase="3">{{ selectedCategoryId }}</div>
+  <div *ngSwitchCase="4">{{ selectedCategoryId }}</div>
+  <div *ngSwitchCase="5">{{ selectedCategoryId }}</div>
+  <div *ngSwitchDefault>Default {{ selectedCategoryId }}</div>
+</div> -->
+<hr />
+<!-- <h1 [ngClass]="{ 'text-center': true, 'text-bg-warning': true }">Categories</h1> -->
+<!-- <div class="text-bg-danger">Home Page</div> -->
+<!-- <select
+  name="cat"
+  class="form-control"
+  id="prdCat"
+  #catList
+  (change)="onSelectChange()"
+  [(ngModel)]="selectedCategoryId"
+>
+  <option *ngFor="let cat of categoryList" [value]="cat.id">
+    {{ cat.name }}
+  </option>
+</select> -->
+<!-- <p class="text-center" [class.text-bg-danger]="isContainedBsClass">
+  {{ selectedCategoryId }}
+</p> -->
+<hr />
+<div class="m-2 w-100 ps-0 ms-0 text-center">
+  <table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col row">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Needed Quant</th>
+        <th scope="col">Details</th>
+        <th scope="col">Add</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *ngFor="
+          let item of productListOfCateogries;
+          let i = index;
+          let od = odd;
+          trackBy: trackproductById
+        "
+        [style.background-color]="item.id > 2 ? 'red' : 'green'"
+        [style.color]="od ? 'green' : 'yellow'"
+      >
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td LightBox="blue" highlightedColor="orange">{{ item?.name }}</td>
+          <td>
+            <img
+              [src]="item.imgURL"
+              LightBox="orange"
+              alt="Image"
+              width="50"
+              height="50"
+            />
+          </td>
+          <td>{{ item.quantity }}</td>
+          <td [class.text-danger]="item.price < 20000">{{ item.price }}</td>
+          <td class="text-center">
+            <input
+              type="text"
+              class="form-control"
+              #itemsCount
+              name=""
+              id=""
+              style="width: 8.5rem"
+              type="number"
+            />
+          </td>
+          <!-- <td>
+            <button
+              (click)="productDetails(+item.id)"
+              class="btn btn-outline-danger"
+            >
+              show Details
+            </button>
+          </td> -->
+          <td>
+            <button>
+              <a [routerLink]="['/products',item.id]" class="btn btn-outline-danger">
+                show Details</a
+              >
+            </button>
+          </td>
+          <td>
+            <button
+              (click)="buy(item.price, itemsCount.value)"
+              class="btn btn-outline-danger"
+            >
+              Add
+            </button>
+            <td>
+              <button
+               [routerLink]="['/product/Add']"
+                class="btn btn-outline-danger"
+              >
+                Add new Product
+              </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+<!-- <h1 class="text-center">{{ selectedCategoryId }}</h1> -->

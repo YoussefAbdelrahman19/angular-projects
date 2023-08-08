@@ -1,0 +1,39 @@
+<ng-container *ngIf="posts$ | async as posts">
+  <ng-container *ngIf="posts.length">
+    <div class="cards">
+      <a class="card" *ngFor="let post of posts" [routerLink]="['/posts', post.id]" [@animate]="animate">
+        <div class="label-container">
+          <verseghy-label *ngFor="let label of post.labels" [label]="label"></verseghy-label>
+        </div>
+        <div class="meta">
+          <div class="author">
+            <img *ngIf="post.author.image" [src]="post.author.image" [alt]="post.author.name" />
+            <span>{{ post.author.name }}</span>
+          </div>
+          <span class="date">Közzétéve: {{ formatDate(post.date) }}</span>
+        </div>
+        <h2>{{ post.title }}</h2>
+        <p class="description">{{ post.description }}</p>
+        <span class="read-more">Tovább</span>
+        <img [src]="post.indexImage" [alt]="post.title" class="index-img" />
+      </a>
+    </div>
+    <div class="nav">
+      <i (click)="previous()" (keyup)="switchPageKeyup($event, 'previous')" tabindex="0" class="material-icons">navigate_before</i>
+      <ng-container *ngIf="featuredPosts$ | async as featuredPosts">
+        <span
+          class="dot"
+          *ngFor="let a of featuredPosts; let i = index"
+          [class]="{ active: i % featuredPosts.length === page }"
+          (click)="toPage(i)"
+          (keyup)="toPageKeyup($event, i)"
+          tabindex="0"
+        >
+          <span class="inner"></span>
+        </span>
+      </ng-container>
+      <i (click)="next()" (keyup)="switchPageKeyup($event, 'next')" tabindex="0" class="material-icons">navigate_next</i>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!posts.length"> </ng-container>
+</ng-container>

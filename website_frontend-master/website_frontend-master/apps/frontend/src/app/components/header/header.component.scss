@@ -1,0 +1,474 @@
+:host {
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 1, 1, 0.1);
+  z-index: 11;
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  @media screen and (max-width: 992px) {
+    height: 56px;
+  }
+}
+
+.skip-header {
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 1.6rem;
+  padding: 2.4rem;
+  background: #f2f2f2;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+
+  &:focus {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.container {
+  display: flex;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  will-change: height;
+
+  @media screen and (max-width: 992px) {
+    padding-right: 8px;
+  }
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  transform-origin: 0 0;
+  text-decoration: none;
+  color: inherit;
+
+  .logo {
+    margin-left: 16px;
+
+    @media screen and (max-width: 992px) {
+      margin-left: 8px;
+    }
+
+    .logo-top {
+      display: flex;
+    }
+
+    .logo-bottom {
+      opacity: 0;
+      margin-top: -3px;
+      will-change: letter-spacing;
+
+      span {
+        display: block;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.logo-image {
+  height: 48px;
+  padding: 8px 0;
+  cursor: pointer;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  will-change: height;
+
+  @media screen and (max-width: 992px) {
+    padding: 4px 0;
+  }
+}
+
+.title {
+  font-family: 'Cabin', sans-serif;
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  line-height: 64px;
+  cursor: pointer;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  will-change: letter-spacing;
+
+  @media screen and (max-width: 992px) {
+    line-height: 56px;
+    font-size: 1.8rem;
+  }
+}
+
+.title-suffix {
+  position: relative;
+
+  .web {
+    background-color: #000;
+    color: #fff;
+    padding: 0 7px;
+    margin-left: 5px;
+    border-radius: 3px;
+    font-family: 'Cabin', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    line-height: 64px;
+    font-weight: 700;
+    opacity: 1;
+    will-change: opacity;
+
+    @media screen and (max-width: 992px) {
+      line-height: 56px;
+      font-size: 1.8rem;
+    }
+  }
+
+  .title-end {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    opacity: 0;
+    will-change: opacity;
+  }
+}
+
+.middle {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+
+  @media screen and (max-width: 992px) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: block;
+    width: 256px;
+    max-width: calc(100% - 56px);
+    background: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+    z-index: 10;
+    transform: translate3d(256px, 0, 0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
+    overflow-y: scroll;
+  }
+
+  &.open {
+    @media screen and (max-width: 992px) {
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+  .menu:focus-within .submenu,
+  .submenu {
+    @media screen and (max-width: 992px) {
+      display: block;
+      height: auto;
+      opacity: 1;
+    }
+  }
+}
+
+.menu-header {
+  display: none;
+  border-bottom: 1px solid #f3f3f3;
+
+  @media screen and (max-width: 992px) {
+    display: block;
+  }
+
+  .menu-close {
+    @media screen and (max-width: 992px) {
+      margin: 4px;
+    }
+  }
+}
+
+.menu {
+  font-family: 'Cabin', sans-serif;
+  display: inline-block;
+  color: #000;
+  line-height: 40px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0 3px;
+
+  @media screen and (max-width: 992px) {
+    display: block;
+    margin: 0;
+    line-height: 48px;
+    position: relative;
+  }
+
+  &.ekreta {
+    border-radius: 3px;
+    transition: background-color 300ms;
+    -webkit-tap-highlight-color: transparent;
+
+    @media screen and (max-width: 992px) {
+      display: block;
+    }
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+
+    img {
+      height: 25px;
+      margin: 7.5px 0;
+      display: block;
+
+      @media screen and (max-width: 992px) {
+        padding: 11.5px 0;
+        margin: 0;
+      }
+    }
+    a {
+      display: inline-block;
+      @media screen and (max-width: 992px) {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &.open {
+    &:hover .submenu,
+    &:focus-within .submenu,
+    .submenu {
+      @media screen and (max-width: 992px) {
+        display: block;
+        height: auto;
+        opacity: 1;
+      }
+    }
+
+    i {
+      transform: rotate3d(1, 0, 0, 180deg);
+    }
+  }
+
+  &:hover,
+  &:focus-within {
+    > a,
+    > span {
+      background-color: #f7f7f7;
+    }
+
+    .submenu {
+      opacity: 1;
+      pointer-events: all;
+
+      @media screen and (max-width: 992px) {
+        height: 0;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .active {
+    color: #007ac7;
+  }
+
+  &.active span {
+    color: #007ac7;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  span {
+    border-radius: 3px 3px 0 0;
+  }
+
+  > a,
+  > span {
+    display: block;
+    padding: 0 10px;
+    transition: background-color 300ms;
+    border-radius: 3px;
+
+    @media screen and (max-width: 992px) {
+      padding-left: 32px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      padding: 0 15px;
+    }
+  }
+
+  i {
+    display: none;
+
+    @media screen and (max-width: 992px) {
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0;
+      transition: transform 0.3s;
+    }
+  }
+
+  .submenu {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    background: #f7f7f7;
+    transition: opacity 300ms;
+    min-width: 140px;
+    border-radius: 0 3px 3px 3px;
+
+    @media screen and (max-width: 992px) {
+      position: static;
+      height: 0;
+      overflow: hidden;
+    }
+
+    a {
+      display: block;
+      padding: 0 15px;
+      border-radius: 3px;
+
+      @media screen and (max-width: 992px) {
+        padding-left: 32px;
+      }
+
+      &:hover,
+      &:focus-within {
+        background-color: #eceff1;
+        color: #009cff;
+
+        @media screen and (max-width: 992px) {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+i {
+  width: 48px;
+  height: 48px;
+  margin: 8px;
+  line-height: 48px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+
+  @media screen and (max-width: 992px) {
+    margin: 4px 0;
+  }
+
+  &.menu-toggle {
+    display: none;
+
+    @media screen and (max-width: 992px) {
+      display: inline-block;
+    }
+  }
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+
+  &.open {
+    @media screen and (max-width: 992px) {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.search {
+  display: flex;
+  border-radius: 3px;
+  margin: 0 3px;
+  background-color: #f7f7f7;
+
+  @media screen and (max-width: 992px) {
+    display: none;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &.top {
+    display: none;
+
+    @media screen and (max-width: 992px) {
+      display: flex;
+    }
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px #000;
+
+    @media screen and (max-width: 992px) {
+      box-shadow: 0 0 0 2px #000 inset;
+    }
+  }
+
+  i {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    margin: 0;
+    vertical-align: middle;
+
+    @media screen and (max-width: 992px) {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      padding-left: 4px;
+    }
+  }
+
+  input {
+    background: transparent;
+    height: 40px;
+    vertical-align: middle;
+    outline: 0;
+    font-family: 'Cabin', sans-serif;
+    width: 134px;
+
+    @media screen and (max-width: 992px) {
+      height: 48px;
+    }
+  }
+}
+
+.new {
+  position: relative;
+
+  .new-badge {
+    position: absolute;
+    top: -6px;
+    right: 0;
+    color: #009cff;
+    font-size: 10px;
+
+    @media screen and (max-width: 992px) {
+      right: 160px;
+    }
+  }
+}
